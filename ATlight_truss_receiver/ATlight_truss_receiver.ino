@@ -1,13 +1,41 @@
 void setup() {
-  
   for(int x=22; x<40; x++){
     pinMode(x, OUTPUT);
   }
   Serial.begin(9600);
+  //testLights();
+  //lightsOff();
 }
 
 void loop() {
+  countdown();
+}
 
+void testLights(){
+  for(int testLightsInt=22; testLightsInt<40; testLightsInt++){
+    digitalWrite(testLightsInt, HIGH);
+    digitalWrite(testLightsInt-1, LOW);
+    delay(200);
+  }
+  for(int testLightsFull=22; testLightsFull<40; testLightsFull++){
+    digitalWrite(testLightsFull, HIGH);
+  }
+}
+void lightsOff(){
+  for(int numOff=22; numOff<40; numOff++){
+   digitalWrite(numOff, LOW); 
+  }
+}
+
+void countdown(){
+  for(int countNum=99; countNum>= 0; countNum--){
+    int digit1 = countNum/10;
+    int digit2 = countNum-(countNum/10)*10;
+    numberTranslate(digit1, digit2);
+    delay(100);
+    lightsOff();
+  }
+  
 }
 
 void numberTranslate(int num2, int num1){
